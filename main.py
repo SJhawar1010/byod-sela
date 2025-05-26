@@ -15,7 +15,7 @@ app = Flask(__name__)
 def index():
     return 'MoviePy Cloud Run is working!'
 
-@app.route('/convert', methods=['POST'])
+@app.route('/convert')
 def covnvert_video():
     
     storage_client = storage.Client()
