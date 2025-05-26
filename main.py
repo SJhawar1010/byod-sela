@@ -62,8 +62,8 @@ def covnvert_video():
     operation = speech_client.long_running_recognize(config=config, audio=audio)
     response = operation.result(timeout=1000)  # Adjust timeout as needed
 
-    for result in response.results:
-        logging.info("Transcription:", result.alternatives[0].transcript)
+    #for result in response.results:
+        #logging.info("Transcription:", result.alternatives[0].transcript)
 
     gcs_video_url = "https://storage.googleapis.com/videodatasetselaseva/Responsible%20AI.mp4"
 
