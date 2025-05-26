@@ -4,11 +4,12 @@ from pydub import AudioSegment
 import os
 import json
 from fpdf import FPDF
+import logging
 
 from flask import Flask, request, jsonify
 
 import os
-
+logging.basicConfig(level=logging.INFO)
 app = Flask(__name__)
 
 @app.route('/')
@@ -62,7 +63,7 @@ def covnvert_video():
     response = operation.result(timeout=1000)  # Adjust timeout as needed
 
     for result in response.results:
-        print("Transcription:", result.alternatives[0].transcript)
+        logging.info("Transcription:", result.alternatives[0].transcript)
 
     gcs_video_url = "https://storage.googleapis.com/videodatasetselaseva/Responsible%20AI.mp4"
 
@@ -91,12 +92,13 @@ def covnvert_video():
     input_video_name
     FILE_NAME = os.path.splitext(input_video_name)[0] + '.pdf'
     pdf.output(FILE_NAME)
-    print(f'Transcription with timestamps saved as {FILE_NAME}')
+    logging.info(f'Transcription with timestamps saved as {FILE_NAME}')
 
 
     blob = bucket.blob(f"{output_folder_name}/{FILE_NAME}")
     blob.upload_from_filename(FILE_NAME)
-    print(f'PDF uploaded to GCP bucket {pdf_bucket_name} in folder {output_folder_name}.')
+    loggin.info(f'PDF uploaded to GCP bucket {pdf_bucket_name} in folder {output_folder_name}.')
+    return jsonify({"message": "PDF uploaded to GCP bucket {pdf_bucket_name} in folder {output_folder_name}", "code": 200})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
