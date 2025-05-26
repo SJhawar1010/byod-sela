@@ -97,7 +97,7 @@ def covnvert_video():
 
     blob = bucket.blob(f"{output_folder_name}/{FILE_NAME}")
     blob.upload_from_filename(FILE_NAME)
-    loggin.info(f'PDF uploaded to GCP bucket {pdf_bucket_name} in folder {output_folder_name}.')
+    logging.info(f'PDF uploaded to GCP bucket {pdf_bucket_name} in folder {output_folder_name}.')
     return jsonify({"message": "PDF uploaded to GCP bucket {pdf_bucket_name} in folder {output_folder_name}", "code": 200})
 
 if __name__ == '__main__':
