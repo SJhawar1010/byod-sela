@@ -84,7 +84,7 @@ def covnvert_video():
         # Prepare metadata
         gcs_video_url = f"https://storage.googleapis.com/{input_bucket_name}/{input_video_name.replace(' ', '%20')}"
         metadata = {"gcs_video_url": gcs_video_url}
-        metadata_blob = storage_client.bucket(output_pdf_bucket_name).blob(f"{metadata_folder_name}{input_video_name.rsplit('.', 1)[0]}_metadata.json")
+        metadata_blob = storage_client.bucket(output_pdf_bucket_name).blob(f"{metadata_folder_name}/{input_video_name.rsplit('.', 1)[0]}_metadata.json")
         metadata_blob.upload_from_string(json.dumps(metadata), content_type="application/json")
 
         # Generate PDF with timestamps
@@ -105,7 +105,7 @@ def covnvert_video():
 
         # Upload PDF to GCS
         pdf_bucket = storage_client.bucket(output_pdf_bucket_name)
-        pdf_blob = pdf_bucket.blob(f"{pdf_folder_name}{pdf_file_name}")
+        pdf_blob = pdf_bucket.blob(f"{pdf_folder_name}/{pdf_file_name}")
         pdf_blob.upload_from_filename(pdf_file_name)
 
         logging.info(f"✅ Done: {input_video_name} ➜ {pdf_file_name}") 
