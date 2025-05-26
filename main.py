@@ -27,12 +27,12 @@ def covnvert_video():
     # output_bucket_name = "audiodatasetselaseva"
     # output_folder_name = "sevadataset/"
     # pdf_bucket_name = "pdfdatasetselaseva"
-    input_bucket_name = os.environ("INPUT_BUCKET_NAME")
-    input_video_name = os.environ("INPUT_VIDEO_NAME")
-    output_audio_name = os.environ("OUTPUT_AUDIO_NAME")
-    output_bucket_name = os.environ("OUTPUT_BUCKET_NAME")
-    output_folder_name = os.environ("OUTPUT_FOLDER_NAME")
-    pdf_bucket_name = os.environ("PDF_BUCKET_NAME")
+    input_bucket_name = os.environ["INPUT_BUCKET_NAME"]
+    input_video_name = os.environ["INPUT_VIDEO_NAME"]
+    output_audio_name = os.environ["OUTPUT_AUDIO_NAME"]
+    output_bucket_name = os.environ["OUTPUT_BUCKET_NAME"]
+    output_folder_name = os.environ["OUTPUT_FOLDER_NAME"]
+    pdf_bucket_name = os.environ["PDF_BUCKET_NAME"]
 
     video_bucket = storage_client.bucket(input_bucket_name)
     video_blob = video_bucket.blob(input_video_name)
