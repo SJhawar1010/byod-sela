@@ -36,8 +36,10 @@ def covnvert_video():
 
     video_bucket = storage_client.bucket(input_bucket_name)
     video_blobs = list(video_bucket.list_blobs())
-
+    logging.info(f"Found {len(video_blobs)} video files:")
+    
     for blob in video_blobs:
+        logging.info(f" - {blob.name}")
         if not blob.name.lower().endswith(".mp4"):
             continue  # Skip non-video files
 
