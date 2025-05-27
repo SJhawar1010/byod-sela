@@ -111,7 +111,7 @@ def covnvert_video():
         pdf_blob.upload_from_filename(pdf_file_name)
 
         logging.info(f"✅ Done: {input_video_name} ➜ {pdf_file_name}") 
-        return jsonify({"message": "All PDF uploaded to GCP bucket", "code": 200})
+    return jsonify({"message": "All PDF uploaded to GCP bucket", "code": 200})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
